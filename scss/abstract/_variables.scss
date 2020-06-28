@@ -1,16 +1,30 @@
-/*-----  VARIABLES ----- */
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
 
-// COLORS
-$color-primary: #55c57a;
-$color-primary-light: #28b485;
-$color-primary-dark: #0d5800;
-$color-black: #000;
-$color-white: #fff;
-$color-grey-light-1: #f7f7f7;
-$accent-color: #ad7d52;
-$color-grey-dark: #777;
-$color-grey-dark-2: #555;
-$color-grey-dark-3: #333;
+
+/// Copy text color
+/// @type Color
+$text-color: rgb(34, 34, 34) !default;
+
+/// Main brand color
+/// @type Color
+$brand-color: rgb(229, 0, 80) !default;
+
+/// Light grey
+/// @type Color
+$light-grey: rgb(237, 237, 237) !default;
+
+/// Medium grey
+/// @type Color
+$mid-grey: rgb(153, 153, 153) !default;
+
+/// Dark grey
+/// @type Color
+$dark-grey: rgb(68, 68, 68) !default;
+
+
+
 
 // FONT
 $default-font-size: 1.6rem;
@@ -23,3 +37,6 @@ $gutter-horizontal: 6rem; // spaces between rows
 
 // Border
 $border-radius-standard: 5px;
+
+
+

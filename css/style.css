@@ -1,224 +1,134 @@
-:root {
-  --color-primary: #136a8a;
-  --color-primary-light: #45a2c4;
-  --color-primary-dark: #267871;
-  --color-grey-light-1: #faf9f9;
-  --color-grey-light-2: #f4f2f2;
-  --color-grey-light-3: #f0eeee;
-  --color-grey-light-4: #ccc;
-  --color-grey-dark-1: #333;
-  --color-grey-dark-2: #777;
-  --color-grey-dark-3: #999;
-  --shadow-dark: 0 2rem 5rem rgba($color: #000000, $alpha: 0.3);
-  --line: 1px solid var(--color-grey-light-2); }
+/* 
+0 - 600PX:      Phone
+600 - 900px:    Tablet portrait
+900 - 1200px:   Tablet landscape
+1200 - 1800px:  Where normal styles apply (Desktp-First approach)
+1800px:         Big desktop
+*/
+/* 
+$breakpoint argument choices:
+- phone
+- tab-port
+- tab-land
+- big-desktop
 
+ORDER: Base + typography > general layout + grid > page layout > components
+ */
+/*----- ANIMATIONS ----- */
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem); }
+  80% {
+    transform: translateX(1rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem); }
+  80% {
+    transform: translateX(-1rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+/*----- BASE+NORMALIZE ----- */
 ::selection {
-  background-color: #F08F00;
-  color: white; }
+  background-color: #e50050;
+  color: #ededed; }
 
-html {
-  scroll-behavior: smooth; }
+/*----- TYPOGRAPHY ----- */
+/*----- UTILITIES ----- */
+.u-center-text {
+  text-align: center !important; }
 
-a:focus, a:hover {
-  color: #F08F00;
-  text-decoration: none; }
+.u-margin-bottom-extra-large {
+  margin-bottom: 6rem !important; }
+  @media only screen and (max-width: 56.25em) {
+    .u-margin-bottom-extra-large {
+      margin-bottom: 3rem !important; } }
+
+.u-margin-bottom-large {
+  margin-bottom: 4rem !important; }
+  @media only screen and (max-width: 56.25em) {
+    .u-margin-bottom-large {
+      margin-bottom: 2rem !important; } }
+
+.u-margin-bottom-medium {
+  margin-bottom: 2rem !important; }
+
+.u-margin-bottom-small {
+  margin-bottom: 1rem !important; }
+
+.u-margin-top-large {
+  margin-top: 4rem !important; }
 
 /*
- * Avatar Photo
+ * Globals
  */
-.avatar {
-  text-align: center; }
-  .avatar__photo {
-    position: relative; }
-    @media only screen and (max-width: 580px) {
-      .avatar__photo {
-        display: inline-block;
-        width: 400px; } }
-    @media only screen and (max-width: 420px) {
-      .avatar__photo {
-        display: inline-block;
-        width: 300px; } }
-    @media only screen and (max-width: 300px) {
-      .avatar__photo {
-        display: inline-block;
-        width: 200px; } }
+/* Custom default button */
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+  color: #333;
+  text-shadow: none;
+  /* Prevent inheritance from `body` */ }
 
-#design-text {
-  -webkit-animation: opacityOnAndOff 4s linear infinite;
-  -moz-animation: opacityOnAndOff 4s linear infinite;
-  animation: opacityOnAndOff 4s linear infinite; }
+/*
+ * Base structure
+ */
+body {
+  text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5); }
 
-#code-text {
-  -webkit-animation: opacityOffAndOn 4s linear infinite;
-  -moz-animation: opacityOffAndOn 4s linear infinite;
-  animation: opacityOffAndOn 4s linear infinite; }
+.cover-container {
+  max-width: 42em; }
 
-#mug {
-  z-index: 100; }
+/*
+ * Header
+ */
+.nav-masthead .nav-link {
+  padding: .25rem 0;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.5);
+  background-color: transparent;
+  border-bottom: .25rem solid transparent; }
 
-#smoke {
-  position: absolute;
-  z-index: 3;
-  width: 1px;
-  height: 160px;
-  left: 6.5rem;
-  bottom: 11.5rem; }
-  @media only screen and (max-width: 75em) {
-    #smoke {
-      bottom: 10.2rem;
-      left: 5.4rem; } }
-  @media only screen and (max-width: 992px) {
-    #smoke {
-      bottom: 7.7rem;
-      left: 4rem; } }
-  @media only screen and (max-width: 769px) {
-    #smoke {
-      bottom: 8.7rem;
-      left: 4.5rem;
-      height: 100px; } }
-  @media only screen and (max-width: 580px) {
-    #smoke {
-      bottom: 7.2rem;
-      left: 3.5rem;
-      height: 80px; } }
-  @media only screen and (max-width: 420px) {
-    #smoke {
-      bottom: 6.2rem;
-      left: 3.3rem;
-      height: 60px; } }
-  @media only screen and (max-width: 300px) {
-    #smoke {
-      bottom: 4.7rem;
-      left: 2.5rem; } }
+.nav-masthead .nav-link:hover,
+.nav-masthead .nav-link:focus {
+  border-bottom-color: rgba(255, 255, 255, 0.25); }
 
-/* smoke balls */
-#smoke span {
-  display: block;
-  position: absolute;
-  bottom: -35px;
-  left: 50%;
-  margin-left: -20px;
-  height: 0px;
-  width: 0px;
-  border: 35px solid #d67a01;
-  border-radius: 35px;
-  left: -14px;
-  opacity: 0;
-  transform: scale(0.2); }
-  @media only screen and (max-width: 420px) {
-    #smoke span {
-      border: 25px solid #d67a01; } }
+.nav-masthead .nav-link + .nav-link {
+  margin-left: 1rem; }
 
-/* Smoke animation */
-@keyframes smokeL {
-  0% {
-    transform: scale(0.2) translate(0, 0); }
-  10% {
-    opacity: 1;
-    transform: scale(0.2) translate(0, -5px); }
-  100% {
-    opacity: 0;
-    transform: scale(1) translate(-20px, -130px); } }
+.nav-masthead .active {
+  color: #fff;
+  border-bottom-color: #fff; }
 
-@keyframes smokeR {
-  0% {
-    transform: scale(0.2) translate(0, 0); }
-  10% {
-    opacity: 1;
-    transform: scale(0.2) translate(0, -5px); }
-  100% {
-    opacity: 0;
-    transform: scale(1) translate(20px, -130px); } }
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
 
-#smoke .s0 {
-  animation: smokeL 10s 0s infinite; }
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem; } }
 
-#smoke .s1 {
-  animation: smokeR 10s 1s infinite; }
-
-#smoke .s2 {
-  animation: smokeL 10s 2s infinite; }
-
-#smoke .s3 {
-  animation: smokeR 10s 3s infinite; }
-
-#smoke .s4 {
-  animation: smokeL 10s 4s infinite; }
-
-#smoke .s5 {
-  animation: smokeR 10s 5s infinite; }
-
-#smoke .s6 {
-  animation: smokeL 10s 6s infinite; }
-
-#smoke .s7 {
-  animation: smokeR 10s 7s infinite; }
-
-#smoke .s8 {
-  animation: smokeL 10s 8s infinite; }
-
-#smoke .s9 {
-  animation: smokeR 10s 9s infinite; }
-
-/* PROFILE SECTION */
-.profile {
-  text-align: center; }
-
-.profile-content {
-  padding: 2rem; }
-
-.about-text {
-  color: #797979;
-  font-weight: 40;
-  font-size: 1rem; }
-
-.socials {
-  margin-bottom: 2rem; }
-
-.btn.btn-fab .fa, .btn.btn-fab .material-icons, .btn.btn-just-icon .fa, .btn.btn-just-icon .material-icons {
-  background: orange !important; }
-
-/* CONTACT FORM */
-.card-header {
-  background: linear-gradient(40deg, #ff9100, #d67a01) !important;
-  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.2), 0 13px 24px -11px rgba(235, 152, 0, 0.6) !important; }
-
-.form-control, .is-focused .form-control {
-  background-image: linear-gradient(0deg, #ff9100 2px, rgba(176, 105, 39, 0) 0), linear-gradient(0deg, #d2d2d2 1px, rgba(209, 209, 209, 0) 0); }
-
-@keyframes opacityOnAndOff {
-  0% {
-    opacity: 1; }
-  50% {
-    opacity: 0; }
-  100% {
-    opacity: 1; } }
-
-@keyframes opacityOffAndOn {
-  0% {
-    opacity: 0; }
-  50% {
-    opacity: 1; }
-  100% {
-    opacity: 0; } }
-
-/* Smoke animation */
-@keyframes smokeL {
-  0% {
-    transform: scale(0.2) translate(0, 0); }
-  10% {
-    opacity: 1;
-    transform: scale(0.2) translate(0, -5px); }
-  100% {
-    opacity: 0;
-    transform: scale(1) translate(-20px, -130px); } }
-
-@keyframes smokeR {
-  0% {
-    transform: scale(0.2) translate(0, 0); }
-  10% {
-    opacity: 1;
-    transform: scale(0.2) translate(0, -5px); }
-  100% {
-    opacity: 0;
-    transform: scale(1) translate(20px, -130px); } }
+/*----- HEADER LAYOUT ----- */
+/*----- FOOTER LAYOUT ----- */
+/*----- NAVIGATION LAYOUT ----- */
+/*----- HOME PAGE----- */
