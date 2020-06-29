@@ -1,7 +1,7 @@
 {
-  "name": "ignified",
+  "name": "dutylead",
   "version": "1.0.0",
-  "description": "ignify rewritten",
+  "description": "services market",
   "main": "index.js",
   "scripts": {
     "watch:sass": "node-sass scss/main.scss css/style.css -w",
